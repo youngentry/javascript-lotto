@@ -4,12 +4,15 @@ const Customer = require("./Customer");
 const LottoBonus = require("./LottoBonus");
 const Validation = require("./Validation");
 const { Console } = require("@woowacourse/mission-utils");
+const { MESSAGE } = require("./constant/message");
 
 class Lotto {
     #numbers;
 
     constructor(numbers, bonusNumber) {
         // 입력받은 번호 유효성 검사
+        this.amount = new Customer();
+        this.lottos = new Generator();
         this.bonus = new LottoBonus(bonusNumber);
         this.resultArray = [];
         this.validate(numbers);
@@ -24,16 +27,15 @@ class Lotto {
         Validation.checkBonusDuplicate(numbers, this.bonus.number);
     }
 
-    setResultArray() {
-        console.log(this.bonus.number);
-        console.log(this.#numbers);
-
-        Console.close();
+    setAmount() {
+        Console.readLine(MESSAGE.PURCHASE, (money) => {
+            this.amount = this.amount.getPurchaseAmount(money);
+        });
     }
 }
 
 module.exports = Lotto;
 
-const lt = new Lotto(123456, 7);
+const lt = new Lotto("1,2,3,4,5,6", "7");
 
-console.log(lt.setResultArray());
+lt.setAmount();

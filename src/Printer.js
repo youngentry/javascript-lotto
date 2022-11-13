@@ -5,31 +5,23 @@ class Printer {
     // 메시지 출력
     constructor() {}
 
-    purchase() {
-        Console.print(MESSAGE.PURCHASE);
-    }
-
-    purchaseAmount(amount) {
-        Console.print(amount + MESSAGE.SHOW_PURCHASE);
-    }
-
-    sixNumbers(sixNumberArray) {
+    static sixNumbers(sixNumberArray) {
         sixNumberArray.forEach((sixNumber) => {
             Console.print(sixNumber);
         });
     }
 
-    inputLottoNumber(input) {
+    static inputLottoNumber(input) {
         Console.print(MESSAGE.LOTTO_NUMBER);
         Console.print(input);
     }
 
-    inputBonusNumber(input) {
+    static inputBonusNumber(input) {
         Console.print(MESSAGE.BONUS_NUMBER);
         Console.print(input);
     }
 
-    lottoResult(winnings) {
+    static lottoResult(winnings) {
         for (let i = 0; i < winnings.length; i++) {
             Console.print(MESSAGE.WINNING[`${i}`] + winnings[i] + MESSAGE.KOREAN_AMOUNT_WORD);
         }

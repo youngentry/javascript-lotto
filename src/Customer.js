@@ -1,9 +1,6 @@
 class Customer {
-    #amount;
-
-    constructor(money) {
+    constructor() {
         // 구매 수량
-        this.#amount = this.getPurchaseAmount(money);
     }
 
     getPurchaseAmount(money) {
