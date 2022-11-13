@@ -8,6 +8,7 @@ class Lotto {
     constructor(numbers) {
         this.printer = new Printer();
         this.generator = new Generator();
+        this.customer = new Customer();
         this.validate(numbers);
         this.#numbers = numbers;
     }
