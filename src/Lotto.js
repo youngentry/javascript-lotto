@@ -11,6 +11,7 @@ class Lotto {
 
     constructor(numbers, bonusNumber) {
         // 입력받은 번호 유효성 검사
+        this.printer = new Printer();
         this.amount = new Customer();
         this.lottos = new Generator();
         this.bonus = new LottoBonus(bonusNumber);
@@ -50,9 +51,7 @@ class Lotto {
         const numbersArray = this.#numbers.split(",");
         numbersArray.push(this.bonus.number);
 
-        this.lottos.push([1, 2, 3, 4, 5, 7]);
-        this.lottos.push([1, 2, 3, 4, 5, 6]);
-        console.log(numbersArray, this.bonus.number);
+        console.log(this.lottos);
 
         for (let i = 0; i < this.lottos.length; i++) {
             let count = 0;
@@ -72,11 +71,13 @@ class Lotto {
 
     setResultArray(winningCount) {
         for (let i = 0; i < 5; i++) {
-            this.resultArray.push(winningCount.filter((el) => el == i + 2).length);
+            this.resultArray.push(winningCount.filter((el) => el == i + 3).length);
         }
-        this.resultArray[3] += winningCount.filter((el) => el > 10).length;
+        this.resultArray[4] += winningCount.filter((el) => el > 10).length;
+        [this.resultArray[3], this.resultArray[4]] = [this.resultArray[4], this.resultArray[3]];
 
         console.log(this.resultArray);
+        Printer.lottoResult(this.resultArray);
         Console.close();
     }
 }
