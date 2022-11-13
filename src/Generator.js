@@ -1,24 +1,27 @@
+const { Console, Random } = require("@woowacourse/mission-utils");
 const Printer = require("./Printer");
 
 class Generator {
-    constructor() {
-        this.lottos = [];
+    #lottos;
+    constructor(amount) {
+        // 랜덤한 로또를 담은 배열
+        this.#lottos = this.getLottos(amount);
     }
 
-    setLottos(amount) {
-        for (let i = 0; i < amount; i++) {
-            this.lottos.push(this.makeRandomLotto());
-        }
-        return;
+    getLottos(amount) {
+        return this.makeRandomLotto(amount);
     }
 
-    makeRandomLotto() {
+    makeRandomLotto(amount) {
         const sixNumber = [];
-        for (let i = 0; i < 6; i++) {
-            sixNumber.push(Math.ceil(Math.random() * 45));
+        for (let i = 0; i < amount; i++) {
+            sixNumber.push(Random.pickUniqueNumbersInRange(1, 45, 6));
         }
         return sixNumber.sort((a, b) => a - b);
     }
 }
+
+const gene = new Generator();
+console.log(gene.getLottos(3));
 
 module.exports = Generator;

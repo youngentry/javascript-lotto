@@ -2,30 +2,31 @@ const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constant/message");
 
 class Printer {
+    // 메시지 출력
     constructor() {}
 
     purchase() {
-        return Console.print(MESSAGE.PURCHASE);
+        Console.print(MESSAGE.PURCHASE);
     }
 
     purchaseAmount(amount) {
-        return Console.print(amount + MESSAGE.SHOW_PURCHASE);
+        Console.print(amount + MESSAGE.SHOW_PURCHASE);
     }
 
     sixNumbers(sixNumberArray) {
-        return sixNumberArray.forEach((sixNumber) => {
+        sixNumberArray.forEach((sixNumber) => {
             Console.print(sixNumber);
         });
     }
 
     inputLottoNumber(input) {
         Console.print(MESSAGE.LOTTO_NUMBER);
-        return Console.print(input);
+        Console.print(input);
     }
 
     inputBonusNumber(input) {
         Console.print(MESSAGE.BONUS_NUMBER);
-        return Console.print(input);
+        Console.print(input);
     }
 
     lottoResult(winnings) {

@@ -1,25 +1,23 @@
 const Printer = require("./Printer");
 const Generator = require("./Generator");
 const Customer = require("./Customer");
+const LottoBonus = require("./LottoBonus");
 
 class Lotto {
     #numbers;
 
     constructor(numbers) {
-        this.printer = new Printer();
-        this.generator = new Generator();
-        this.customer = new Customer();
+        // 입력받은 번호 유효성 검사
+        this.bonus;
         this.validate(numbers);
         this.#numbers = numbers;
     }
 
     validate(numbers) {
-        if (numbers.length !== 6) {
+        if (numbers.toString().length !== 6) {
             throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
         }
     }
-
-    // TODO: 추가 기능 구현
 }
 
 module.exports = Lotto;

@@ -1,19 +1,18 @@
 class Customer {
-    constructor() {
-        this.purchaseAmount = null;
+    #amount;
+
+    constructor(money) {
+        // 구매 수량
+        this.#amount = this.getPurchaseAmount(money);
     }
 
-    setPurchaseAmount(money) {
-        this.purchaseAmount = this.divideBy1000(money);
-        return;
-    }
-    divideBy1000(money) {
+    getPurchaseAmount(money) {
         if (this.checkMoneyValidation(money)) {
             return money / 1000;
         }
     }
     checkMoneyValidation(money) {
-        if (money % 1000 === 0) {
+        if (money % 1000 === 0 && money !== 0) {
             return true;
         }
         throw new Error("[ERROR] 1,000원으로 나누어 떨어지는 수를 입력해야합니다.");
