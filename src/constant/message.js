@@ -16,4 +16,13 @@ const MESSAGE = {
     KOREAN_AMOUNT_WORD: "개",
 };
 
-module.exports = { MESSAGE };
+const UNIT = {
+    0: 5000,
+    1: 50000,
+    2: 1500000,
+    3: 30000000,
+    4: 2000000000,
+    PRICE: 1000,
+};
+
+module.exports = { MESSAGE, UNIT };

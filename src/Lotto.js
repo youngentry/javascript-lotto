@@ -4,7 +4,7 @@ const Customer = require("./Customer");
 const LottoBonus = require("./LottoBonus");
 const Validation = require("./Validation");
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("./constant/message");
+const { MESSAGE, UNIT } = require("./constant/message");
 
 class Lotto {
     #numbers;
@@ -16,6 +16,7 @@ class Lotto {
         this.lottos = new Generator();
         this.bonus = new LottoBonus(bonusNumber);
         this.resultArray = [];
+        this.revenue;
         this.validate(numbers);
         this.#numbers = numbers;
     }
@@ -78,7 +79,18 @@ class Lotto {
 
         console.log(this.resultArray);
         Printer.lottoResult(this.resultArray);
-        Console.close();
+        this.setRevenue(this.resultArray);
+    }
+
+    setRevenue(resultArray) {
+        const sum = (resultArray) => {
+            let sum = 0;
+            for (let i = 0; i < 5; i++) {
+                sum += UNIT[i] * resultArray[i];
+            }
+            return MESSAGE.YIELD + (sum / this.amount / UNIT.PRICE) * 100 + "%" + MESSAGE.KOREAN_ENDING_WORD;
+        };
+        console.log(sum(this.resultArray));
     }
 }
 
