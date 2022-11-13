@@ -1,15 +1,15 @@
 const Validation = require("./Validation");
 
 class LottoBonus {
-    #bonusNumber;
+    number;
 
     constructor(bonusNumber) {
         this.validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+        this.number = bonusNumber;
     }
 
     validate(bonusNumber) {
-        Validation.checkLength(bonusNumber);
+        Validation.checkBonusLength(bonusNumber);
         Validation.checkRange(bonusNumber);
         Validation.checkInteger(bonusNumber);
     }

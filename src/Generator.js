@@ -2,10 +2,10 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const Printer = require("./Printer");
 
 class Generator {
-    #lottos;
+    lottos;
     constructor(amount) {
         // 랜덤한 로또를 담은 배열
-        this.#lottos = this.getLottos(amount);
+        this.lottos = this.getLottos(amount);
     }
 
     getLottos(amount) {
