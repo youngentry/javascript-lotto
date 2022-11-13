@@ -46,6 +46,12 @@ class Lotto {
         });
     }
 
+    // printLottos(lottos) {
+    //     this.lottos.forEach((lotto) => {
+    //         Console.print(lotto);
+    //     });
+    // }
+
     getWinningCount() {
         const winningCount = [];
         let BONUS_CHANCE = 10;
@@ -88,7 +94,7 @@ class Lotto {
             for (let i = 0; i < 5; i++) {
                 sum += UNIT[i] * resultArray[i];
             }
-            return MESSAGE.YIELD + ((sum / this.amount / UNIT.PRICE) * 100).toFixed(2) + "%" + MESSAGE.KOREAN_ENDING_WORD;
+            return MESSAGE.YIELD + ((sum / this.amount / UNIT.PRICE) * 100).toFixed(1) + "%" + MESSAGE.KOREAN_ENDING_WORD;
         };
         console.log(sum(this.resultArray));
     }
@@ -96,6 +102,6 @@ class Lotto {
 
 module.exports = Lotto;
 
-const lt = new Lotto("1,2,3,4,5,6", "7");
+// const lt = new Lotto("1,2,3,4,5,6", "7");
 
-lt.setAmount();
+// lt.setAmount();

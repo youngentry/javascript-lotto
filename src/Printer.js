@@ -10,6 +10,12 @@ class Printer {
             Console.print(MESSAGE.WINNING[`${i}`] + winnings[i] + MESSAGE.KOREAN_AMOUNT_WORD);
         }
     }
+
+    static printLottos(lottos) {
+        lottos.forEach((lotto) => {
+            Console.print(lotto);
+        });
+    }
 }
 // const print = new Printer();
 // print.purchase();
