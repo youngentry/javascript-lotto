@@ -40,7 +40,31 @@ class Lotto {
             this.lottos.forEach((lotto) => {
                 Console.print(lotto);
             });
+            this.getWinningCount();
         });
+    }
+
+    getWinningCount() {
+        const winningCount = [];
+        let BONUS_CHANCE = 10;
+        const numbersArray = this.#numbers.split(",");
+        numbersArray.push(this.bonus.number);
+        console.log(numbersArray, this.bonus.number);
+
+        for (let i = 0; i < this.lottos.length; i++) {
+            let count = 0;
+            for (let j = 0; j < numbersArray.length; j++) {
+                if (this.lottos[i].includes(parseInt(numbersArray[j])) && j < numbersArray.length - 1) {
+                    count++;
+                }
+                if (count == 5 && j == numbersArray.length - 1) {
+                    count += BONUS_CHANCE;
+                }
+            }
+            winningCount.push(count);
+        }
+        console.log(winningCount);
+        return winningCount;
     }
 }
 
