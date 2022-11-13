@@ -49,6 +49,9 @@ class Lotto {
         let BONUS_CHANCE = 10;
         const numbersArray = this.#numbers.split(",");
         numbersArray.push(this.bonus.number);
+
+        this.lottos.push([1, 2, 3, 4, 5, 7]);
+        this.lottos.push([1, 2, 3, 4, 5, 6]);
         console.log(numbersArray, this.bonus.number);
 
         for (let i = 0; i < this.lottos.length; i++) {
@@ -64,7 +67,17 @@ class Lotto {
             winningCount.push(count);
         }
         console.log(winningCount);
-        return winningCount;
+        this.setResultArray(winningCount);
+    }
+
+    setResultArray(winningCount) {
+        for (let i = 0; i < 5; i++) {
+            this.resultArray.push(winningCount.filter((el) => el == i + 2).length);
+        }
+        this.resultArray[3] += winningCount.filter((el) => el > 10).length;
+
+        console.log(this.resultArray);
+        Console.close();
     }
 }
 
