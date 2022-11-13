@@ -88,7 +88,7 @@ class Lotto {
             for (let i = 0; i < 5; i++) {
                 sum += UNIT[i] * resultArray[i];
             }
-            return MESSAGE.YIELD + (sum / this.amount / UNIT.PRICE) * 100 + "%" + MESSAGE.KOREAN_ENDING_WORD;
+            return MESSAGE.YIELD + ((sum / this.amount / UNIT.PRICE) * 100).toFixed(2) + "%" + MESSAGE.KOREAN_ENDING_WORD;
         };
         console.log(sum(this.resultArray));
     }
