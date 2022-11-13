@@ -7,13 +7,11 @@ class Customer {
         this.purchaseAmount = this.divideBy1000(money);
         return;
     }
-
     divideBy1000(money) {
         if (this.checkMoneyValidation(money)) {
             return money / 1000;
         }
     }
-
     checkMoneyValidation(money) {
         if (money % 1000 === 0) {
             return true;
