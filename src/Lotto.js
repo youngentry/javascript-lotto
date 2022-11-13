@@ -30,6 +30,16 @@ class Lotto {
     setAmount() {
         Console.readLine(MESSAGE.PURCHASE, (money) => {
             this.amount = this.amount.getPurchaseAmount(money);
+            this.setLottos();
+        });
+    }
+
+    setLottos() {
+        Console.readLine(this.amount + MESSAGE.PURCHASE_RESULT, (money) => {
+            this.lottos = this.lottos.getLottos(this.amount);
+            this.lottos.forEach((lotto) => {
+                Console.print(lotto);
+            });
         });
     }
 }
