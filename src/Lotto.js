@@ -77,15 +77,16 @@ class Lotto {
         return this.resultArray;
     }
 
-    showResult(resultArray, amount) {
-        const sum = (resultArray) => {
-            let sum = 0;
-            for (let i = 0; i < 5; i++) {
-                sum += UNIT[i] * resultArray[i];
-            }
-            return MESSAGE.YIELD + ((sum / amount / UNIT.PRICE) * 100).toFixed(1) + "%" + MESSAGE.KOREAN_ENDING_WORD;
-        };
-        Console.print(sum(resultArray));
+    showRevenue(resultArray, amount) {
+        Console.print(MESSAGE.YIELD + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
+    }
+
+    getRevenue(resultArray, amount) {
+        let sum = 0;
+        for (let i = 0; i < 5; i++) {
+            sum += UNIT[i] * resultArray[i];
+        }
+        return ((sum / amount / UNIT.PRICE) * 100).toFixed(1);
     }
 }
 

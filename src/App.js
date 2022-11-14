@@ -47,7 +47,7 @@ class App {
         const lottoPlaceArray = this.lotto.getLottoResult(winningCount);
         console.log(winningCount, "이긴 숫자");
         console.log(lottoPlaceArray, "당첨내역");
-        this.lotto.showResult(lottoPlaceArray, this.amount);
+        this.lotto.showRevenue(lottoPlaceArray, this.amount);
     };
 
     play() {
