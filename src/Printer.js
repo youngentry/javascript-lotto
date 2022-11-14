@@ -1,5 +1,5 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE } = require("./constant/message");
+const { MESSAGE, UNIT } = require("./constant/message");
 
 class Printer {
     // 메시지 출력

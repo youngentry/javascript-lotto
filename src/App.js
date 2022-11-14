@@ -4,45 +4,46 @@ const Generator = require("./Generator");
 const Customer = require("./Customer");
 const Lotto = require("./Lotto");
 const Printer = require("./Printer");
+const LottoBonus = require("./LottoBonus");
+const Validation = require("./Validation");
 
 class App {
     amount;
-    paidLottos;
-    expectNumbers;
-    bonusNumber;
+    lottos;
     winningNumber;
 
     constructor() {
         this.customer = new Customer();
         this.generator = new Generator();
+        this.lotto;
+        this.bonus;
     }
-
-    // 입력받아 결과 출력
-    // Customer : getPurchaseAmount(money) => 금액 입력 받아 로또 수량 amount 반환
-    // Generator : getLottos(amount) => 랜덤 로또 배열 lottos 반환
-    // Lotto : getNumbers => 숫자 입력 받아 로또 배열 numbers 반환
-    // Drawing :
 
     getInput(message, callback) {
         Console.readLine(message, callback);
     }
 
     inputMoney = (money) => {
-        this.amount = this.customer.getPurchaseAmount(money);
-        this.paidLottos = this.generator.getLottos(this.amount);
         Printer.spaceLine();
-        Printer.lottos(this.amount, MESSAGE.PURCHASE_RESULT, this.paidLottos);
+        this.amount = this.customer.getPurchaseAmount(money);
+        this.lottos = this.generator.getLottos(this.amount);
+        Printer.lottos(this.amount, MESSAGE.PURCHASE_RESULT, this.lottos);
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
     };
 
     inputNumbers = (numbers) => {
         Printer.spaceLine();
-        this.expectNumbers = new Lotto(numbers);
+        this.lotto = new Lotto(numbers);
         this.getInput(MESSAGE.BONUS_NUMBER, this.inputBonusNumber);
     };
 
     inputBonusNumber = (bonusNumber) => {
-        Console.print("비교 결과 출력");
+        Printer.spaceLine();
+        this.bonus = new LottoBonus(bonusNumber);
+        this.lotto.validateDuplication(this.bonus.number);
+        const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottos);
+        const lottoPlaceArray = this.lotto.setResultArray(winningCount);
+        this.lotto.showResult(lottoPlaceArray, this.amount);
     };
 
     play() {
