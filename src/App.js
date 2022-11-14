@@ -27,7 +27,9 @@ class App {
         Printer.spaceLine();
         this.amount = this.customer.getPurchaseAmount(money);
         this.lottos = this.generator.getLottos(this.amount);
-        Printer.lottos(this.amount, MESSAGE.PURCHASE_RESULT, this.lottos);
+        Printer.amountResult(this.amount, MESSAGE.PURCHASE_RESULT);
+        Printer.lottos(this.lottos);
+        Printer.spaceLine();
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
     };
 

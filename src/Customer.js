@@ -1,8 +1,4 @@
 class Customer {
-    constructor() {
-        // 구매 수량
-    }
-
     getPurchaseAmount(money) {
         if (this.checkMoneyValidation(money)) {
             return money / 1000;

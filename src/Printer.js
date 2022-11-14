@@ -5,12 +5,14 @@ class Printer {
     // 메시지 출력
     constructor() {}
 
-    static lottos(amount, message, lottos) {
-        Console.print(amount + message);
+    static amountResult(amount, amountResult) {
+        Console.print(amount + amountResult);
+    }
+
+    static lottos(lottos) {
         lottos.forEach((lotto) => {
             Console.print(lotto);
         });
-        this.spaceLine();
     }
 
     static spaceLine() {
