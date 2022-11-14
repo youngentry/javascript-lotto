@@ -44,7 +44,9 @@ class App {
         this.bonus = new LottoBonus(bonusNumber);
         this.lotto.validateDuplication(this.bonus.number);
         const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottos);
-        const lottoPlaceArray = this.lotto.setResultArray(winningCount);
+        const lottoPlaceArray = this.lotto.getLottoResult(winningCount);
+        console.log(winningCount, "이긴 숫자");
+        console.log(lottoPlaceArray, "당첨내역");
         this.lotto.showResult(lottoPlaceArray, this.amount);
     };
 

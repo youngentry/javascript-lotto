@@ -13,18 +13,12 @@ class Validation {
         }
     }
 
-    static checkBonusLength(number) {
-        if (number.toString().length !== 1) {
-            throw new Error("[ERROR] 보너스 번호는 1개여야 합니다.");
-        }
-    }
-
     static checkRange(numbers) {
         if (Array.isArray(numbers)) numbers = numbers.join();
         const numberArray = numbers.split(",");
         numberArray.forEach((number) => {
             if (parseInt(number) < 1 || parseInt(number) > 45) {
-                throw new Error("[ERROR] 보너스 번호는 1에서 45사이의 숫자여야 합니다.");
+                throw new Error("[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다.");
             }
         });
     }
@@ -33,7 +27,7 @@ class Validation {
         if (Array.isArray(numbers)) numbers = numbers.join();
         const numberArray = numbers.split(",");
         numberArray.forEach((number) => {
-            if (!/^\d+$/g.test(numbers)) {
+            if (!/^\d+$/g.test(number)) {
                 throw new Error("[ERROR] 숫자를 입력해야 합니다.");
             }
         });

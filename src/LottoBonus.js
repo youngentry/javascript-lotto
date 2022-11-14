@@ -9,9 +9,8 @@ class LottoBonus {
     }
 
     validate(bonusNumber) {
-        Validation.checkBonusLength(bonusNumber);
         Validation.checkRange(bonusNumber);
-        Validation.checkInteger(bonusNumber);
+        Validation.checkNumber(bonusNumber);
     }
 }
 
