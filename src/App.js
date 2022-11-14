@@ -6,6 +6,8 @@ const Lotto = require("./Lotto");
 const Printer = require("./Printer");
 
 class App {
+    amount;
+    paidLottos;
     expectNumbers;
     bonusNumber;
     winningNumber;
@@ -26,14 +28,21 @@ class App {
     }
 
     inputMoney = (money) => {
-        const amount = this.customer.getPurchaseAmount(money);
-        const lottos = this.generator.getLottos(amount);
-        Printer.printLottos(lottos);
+        this.amount = this.customer.getPurchaseAmount(money);
+        this.paidLottos = this.generator.getLottos(this.amount);
+        Printer.spaceLine();
+        Printer.lottos(this.amount, MESSAGE.PURCHASE_RESULT, this.paidLottos);
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
     };
 
     inputNumbers = (numbers) => {
-        console.log("number", numbers);
+        Printer.spaceLine();
+        this.expectNumbers = new Lotto(numbers);
+        this.getInput(MESSAGE.BONUS_NUMBER, this.inputBonusNumber);
+    };
+
+    inputBonusNumber = (bonusNumber) => {
+        Console.print("비교 결과 출력");
     };
 
     play() {

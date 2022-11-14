@@ -1,4 +1,11 @@
 class Validation {
+    static validateExpectNumbers(numbers) {
+        this.checkNumbersLength(numbers);
+        this.checkRange(numbers);
+        this.checkInteger(numbers);
+        this.checkNumbersDuplicate(numbers);
+    }
+
     static checkNumbersLength(numbers) {
         if (numbers.split(",").length !== 6) {
             throw new Error("[ERROR] 보너스 번호는 6개여야 합니다.");

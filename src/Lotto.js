@@ -22,10 +22,7 @@ class Lotto {
     }
 
     validate(numbers) {
-        Validation.checkInteger(numbers);
-        Validation.checkNumbersLength(numbers);
-        Validation.checkRange(numbers);
-        Validation.checkNumbersDuplicate(numbers);
+        Validation.validateExpectNumbers(numbers);
         Validation.checkBonusDuplicate(numbers, this.bonus.number);
     }
 
@@ -45,12 +42,6 @@ class Lotto {
             this.getWinningCount();
         });
     }
-
-    // printLottos(lottos) {
-    //     this.lottos.forEach((lotto) => {
-    //         Console.print(lotto);
-    //     });
-    // }
 
     getWinningCount() {
         const winningCount = [];
@@ -102,6 +93,6 @@ class Lotto {
 
 module.exports = Lotto;
 
-// const lt = new Lotto("1,2,3,4,5,6", "7");
+const lt = new Lotto("1,2,3,4,5,6", "7");
 
-// lt.setAmount();
+lt.setAmount();
