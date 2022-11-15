@@ -1,4 +1,4 @@
-const Customer = require("../src/Customer");
+const Customer = require("../src/module/Customer");
 
 const errorMoneyList = ["", " ", "a", "0", "1", "10", "1 000 ", " 000"];
 

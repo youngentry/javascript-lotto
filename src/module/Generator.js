@@ -1,5 +1,5 @@
 const { Random } = require("@woowacourse/mission-utils");
-const { OPTION } = require("./constant/message");
+const { OPTION } = require("../constant/message");
 
 class Generator {
     getLottos(amount) {

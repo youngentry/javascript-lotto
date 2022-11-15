@@ -1,6 +1,6 @@
-const Validation = require("./Validation");
+const Validation = require("./module/Validation");
 const { UNIT, OPTION, BONUS_OPTION } = require("./constant/message");
-const LottoBonus = require("./LottoBonus");
+const LottoBonus = require("./module/LottoBonus");
 
 class Lotto {
     #numbers;

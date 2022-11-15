@@ -1,10 +1,10 @@
 const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constant/message");
-const Generator = require("./Generator");
-const Customer = require("./Customer");
+const Generator = require("./module/Generator");
+const Customer = require("./module/Customer");
 const Lotto = require("./Lotto");
-const Printer = require("./Printer");
-const LottoBonus = require("./LottoBonus");
+const Printer = require("./module/Printer");
+const LottoBonus = require("./module/LottoBonus");
 
 class App {
     amount;

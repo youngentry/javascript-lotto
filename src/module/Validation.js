@@ -1,4 +1,4 @@
-const { OPTION } = require("./constant/message");
+const { OPTION } = require("../constant/message");
 
 class Validation {
     static validateExpectNumbers(numbers) {
