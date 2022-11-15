@@ -2,11 +2,11 @@ const { OPTION } = require("../constant/message");
 
 class Customer {
     getPurchaseAmount(money) {
-        if (this.checkMoneyValidation(money)) {
+        if (this.validateMoney(money)) {
             return money / OPTION.PRICE;
         }
     }
-    checkMoneyValidation(money) {
+    validateMoney(money) {
         money = money.trim();
         if (money % OPTION.PRICE === 0 && parseInt(money) !== 0 && money) {
             return true;
