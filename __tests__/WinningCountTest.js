@@ -9,6 +9,7 @@ const lottos = [
     [1, 2, 10, 11, 20, 45],
     [1, 2, 3, 7, 8, 9],
     [1, 2, 3, 4, 7, 8],
+    [1, 2, 3, 4, 5, 8],
     [1, 2, 3, 4, 5, 45],
     [1, 2, 3, 4, 5, 6],
 ];
@@ -18,6 +19,6 @@ const bonus = "45";
 describe("일치하는 로또 숫자 테스트", () => {
     test("로또 번호와 예상하는 번호가 n개 일치한다.", () => {
         const winningCount = new Lotto(expectLotto).getWinningCount(bonus, lottos);
-        expect(winningCount).toMatchObject([2, 0, 1, 1, 0, 2, 3, 4, 15, 6]);
+        expect(winningCount).toMatchObject([2, 0, 1, 1, 0, 2, 3, 4, 5, 15, 6]);
     });
 });

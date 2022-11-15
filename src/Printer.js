@@ -6,8 +6,8 @@ class Printer {
         Console.print("");
     }
 
-    static amountResult(amount, amountResult) {
-        Console.print(amount + amountResult);
+    static amountResult(amount) {
+        Console.print(amount + MESSAGE.PURCHASE_RESULT);
     }
 
     static lottoList(lottos) {

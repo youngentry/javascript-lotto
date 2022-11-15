@@ -1,12 +1,13 @@
 const Validation = require("./Validation");
-const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, UNIT, OPTION, BONUS_OPTION } = require("./constant/message");
+const { UNIT, OPTION, BONUS_OPTION } = require("./constant/message");
+const LottoBonus = require("./LottoBonus");
 
 class Lotto {
     #numbers;
 
     constructor(numbers) {
         this.resultArray = [];
+        this.bonus;
         this.validate(numbers);
         this.#numbers = numbers;
     }
@@ -19,9 +20,9 @@ class Lotto {
     }
 
     getWinningCount(bonus, lottoList) {
+        this.bonus = new LottoBonus(bonus).number;
         const winningCountList = [];
         const winningNumbers = this.#numbers.split(",");
-        winningNumbers.push(bonus);
 
         lottoList.forEach((lotto) => {
             let winningCount = this.findWinningCount(lotto, winningNumbers);
@@ -33,13 +34,13 @@ class Lotto {
     findWinningCount(lotto, winningNumbers) {
         let count = 0;
         for (let j = 0; j < winningNumbers.length; j++) {
-            if (lotto.includes(parseInt(winningNumbers[j])) && j < winningNumbers.length - 1) {
+            if (lotto.includes(parseInt(winningNumbers[j])) && j < winningNumbers.length) {
                 count++;
             }
-            // 보너스 번호로 당첨되는 2등의 경우에는 별도의 표시 남기기 ex) 5개일치(5) + 보너스번호일치(10) = 15
-            if (count == 5 && j == winningNumbers.length - 1) {
-                count += BONUS_OPTION.CHANCE;
-            }
+        }
+        // 보너스 번호로 당첨되는 2등의 경우에는 별도의 표시 남기기 ex) 5개일치(5) + 보너스번호일치(10) = 15
+        if (count == 5 && lotto.includes(Number(this.bonus))) {
+            count += BONUS_OPTION.CHANCE;
         }
         return count;
     }

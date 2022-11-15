@@ -7,13 +7,15 @@ const Printer = require("./Printer");
 const LottoBonus = require("./LottoBonus");
 
 class App {
-    #amount;
-    #lottoList;
-    #lottoResultArray;
+    amount;
+    lottoList;
+    winningCount;
+    lottoResult;
+    revenue;
 
     constructor() {
         this.lotto;
-        this.bonus;
+        this.lottoBonus;
     }
 
     getInput(message, callback) {
@@ -22,11 +24,11 @@ class App {
 
     inputMoney = (money) => {
         Printer.spaceLine();
-        this.#amount = new Customer().getPurchaseAmount(money);
-        this.lottoList = new Generator().getLottos(this.#amount);
+        this.amount = new Customer().getPurchaseAmount(money);
+        this.purchaseList = new Generator().getLottos(this.amount);
 
-        Printer.amountResult(this.#amount, MESSAGE.PURCHASE_RESULT);
-        Printer.lottoList(this.lottoList);
+        Printer.amountResult(this.amount);
+        Printer.lottoList(this.purchaseList);
         Printer.spaceLine();
 
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
@@ -40,14 +42,13 @@ class App {
 
     inputBonusNumber = (bonusNumber) => {
         Printer.spaceLine();
-        this.bonus = new LottoBonus(bonusNumber);
-        this.lotto.validateDuplication(this.bonus.number);
-        const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottoList);
-        const lottoResultArray = this.lotto.getLottoResult(winningCount);
-        const revenue = this.lotto.getRevenue(lottoResultArray, this.#amount);
+        this.lottoBonus = new LottoBonus(bonusNumber);
+        this.winningCount = this.lotto.getWinningCount(this.lottoBonus.number, this.purchaseList);
+        this.lottoResult = this.lotto.getLottoResult(this.winningCount);
+        this.revenue = this.lotto.getRevenue(this.lottoResult, this.amount);
 
-        Printer.lottoResult(lottoResultArray);
-        Printer.revenue(revenue);
+        Printer.lottoResult(this.lottoResult);
+        Printer.revenue(this.revenue);
         Console.close();
     };
 
