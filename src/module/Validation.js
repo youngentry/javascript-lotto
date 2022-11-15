@@ -2,10 +2,10 @@ const { OPTION } = require("../constant/message");
 
 class Validation {
     static validateExpectNumbers(numbers) {
-        this.checkNumbersLength(numbers);
-        this.checkNumbersDuplicate(numbers);
-        this.checkRange(numbers);
         this.checkNumber(numbers);
+        this.checkNumbersLength(numbers);
+        this.checkRange(numbers);
+        this.checkNumbersDuplicate(numbers);
     }
 
     static checkNumbersLength(numbers) {

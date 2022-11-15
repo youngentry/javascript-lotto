@@ -30,11 +30,14 @@ class App {
         Printer.amountResult(this.amount);
         Printer.lottoList(this.purchaseList);
         Printer.spaceLine();
+
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
     };
+
     inputNumbers = (numbers) => {
         Printer.spaceLine();
         this.lotto = new Lotto(numbers);
+
         this.getInput(MESSAGE.BONUS_NUMBER, this.inputBonusNumber);
     };
 
