@@ -9,6 +9,7 @@ const LottoBonus = require("./LottoBonus");
 class App {
     #amount;
     #lottoList;
+    #lottoResultArray;
 
     constructor() {
         this.lotto;
@@ -42,10 +43,10 @@ class App {
         this.bonus = new LottoBonus(bonusNumber);
         this.lotto.validateDuplication(this.bonus.number);
         const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottoList);
-        const lottoPlaceArray = this.lotto.getLottoResult(winningCount);
+        const lottoResultArray = this.lotto.getLottoResult(winningCount);
 
-        Printer.lottoResult(lottoPlaceArray);
-        this.lotto.showRevenue(lottoPlaceArray, this.amount);
+        Printer.lottoResult(lottoResultArray);
+        this.lotto.showRevenue(lottoResultArray, this.amount);
         Console.close();
     };
 

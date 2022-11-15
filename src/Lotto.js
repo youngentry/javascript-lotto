@@ -18,35 +18,44 @@ class Lotto {
         Validation.checkBonusDuplicate(this.#numbers, bonus);
     }
 
-    getWinningCount(bonus, lottos) {
-        const winningCount = [];
-        const numbersArray = this.#numbers.split(",");
-        numbersArray.push(bonus);
+    getWinningCount(bonus, lottoList) {
+        const winningCountList = [];
+        const winningNumbers = this.#numbers.split(",");
+        winningNumbers.push(bonus);
 
-        for (let i = 0; i < lottos.length; i++) {
-            let count = 0;
-            for (let j = 0; j < numbersArray.length; j++) {
-                if (lottos[i].includes(parseInt(numbersArray[j])) && j < numbersArray.length - 1) {
-                    count++;
-                }
-                if (count == 5 && j == numbersArray.length - 1) {
-                    count += BONUS_OPTION.CHANCE;
-                }
+        lottoList.forEach((lotto) => {
+            let winningCount = this.findWinningCount(lotto, winningNumbers);
+            winningCountList.push(winningCount);
+        });
+
+        return winningCountList;
+    }
+    findWinningCount(lotto, winningNumbers) {
+        let count = 0;
+        for (let j = 0; j < winningNumbers.length; j++) {
+            if (lotto.includes(parseInt(winningNumbers[j])) && j < winningNumbers.length - 1) {
+                count++;
             }
-            winningCount.push(count);
+            // 보너스 번호로 당첨되는 2등의 경우에는 별도의 표시 남기기 ex) 5개일치(5) + 보너스번호일치(10) = 15
+            if (count == 5 && j == winningNumbers.length - 1) {
+                count += BONUS_OPTION.CHANCE;
+            }
         }
-        return winningCount;
+        return count;
     }
 
     getLottoResult(winningCount) {
         for (let i = 0; i < 5; i++) {
             this.resultArray.push(winningCount.filter((el) => el == i + 3).length);
         }
-        // 5, 4, 3, 1, 2 순서로 담긴 등수를 5, 4, 3, 2, 1 순서로 바꿔주기
-        this.resultArray[4] += winningCount.filter((el) => el > BONUS_OPTION.CHANCE).length;
-        [this.resultArray[3], this.resultArray[4]] = [this.resultArray[4], this.resultArray[3]];
+        this.sortBonusPlace(this.resultArray, winningCount);
 
         return this.resultArray;
+    }
+    sortBonusPlace(resultArray, winningCount) {
+        // 5, 4, 3, 1, 2 순서로 담긴 등수를 5, 4, 3, 2, 1 순서로 바꿔주기
+        resultArray[4] += winningCount.filter((el) => el > BONUS_OPTION.CHANCE).length;
+        [resultArray[3], resultArray[4]] = [resultArray[4], resultArray[3]];
     }
 
     getRevenue(resultArray, amount) {
