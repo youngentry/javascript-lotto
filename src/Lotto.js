@@ -78,7 +78,7 @@ class Lotto {
     }
 
     showRevenue(resultArray, amount) {
-        Console.print(MESSAGE.YIELD + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
+        Console.print(MESSAGE.YIELD + " " + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
     }
 
     getRevenue(resultArray, amount) {

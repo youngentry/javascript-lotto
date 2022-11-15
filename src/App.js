@@ -9,7 +9,7 @@ const Validation = require("./Validation");
 
 class App {
     amount;
-    lottos;
+    lottoList;
     winningNumber;
 
     constructor() {
@@ -26,13 +26,12 @@ class App {
     inputMoney = (money) => {
         Printer.spaceLine();
         this.amount = this.customer.getPurchaseAmount(money);
-        this.lottos = this.generator.getLottos(this.amount);
+        this.lottoList = this.generator.getLottos(this.amount);
         Printer.amountResult(this.amount, MESSAGE.PURCHASE_RESULT);
-        Printer.lottos(this.lottos);
+        Printer.lottos(this.lottoList);
         Printer.spaceLine();
         this.getInput(MESSAGE.LOTTO_NUMBER, this.inputNumbers);
     };
-
     inputNumbers = (numbers) => {
         Printer.spaceLine();
         this.lotto = new Lotto(numbers);
@@ -43,11 +42,10 @@ class App {
         Printer.spaceLine();
         this.bonus = new LottoBonus(bonusNumber);
         this.lotto.validateDuplication(this.bonus.number);
-        const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottos);
+        const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottoList);
         const lottoPlaceArray = this.lotto.getLottoResult(winningCount);
-        console.log(winningCount, "이긴 숫자");
-        console.log(lottoPlaceArray, "당첨내역");
         this.lotto.showRevenue(lottoPlaceArray, this.amount);
+        Console.close();
     };
 
     play() {
