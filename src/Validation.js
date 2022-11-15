@@ -33,18 +33,18 @@ class Validation {
         });
     }
 
-    static checkBonusDuplicate(numbers, bonusNumber) {
-        const numbersArray = numbers.split(",");
-        if (numbersArray.includes(bonusNumber.toString())) {
-            throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복된 숫자가 포함되어 있으면 안됩니다.");
-        }
-    }
-
     static checkNumbersDuplicate(numbers) {
         if (Array.isArray(numbers)) numbers = numbers.join();
         const setNumbers = new Set(numbers.split(","));
         if (numbers.split(",").length !== setNumbers.size) {
             throw new Error("[ERROR] 중복된 숫자가 포함되어 있으면 안됩니다.");
+        }
+    }
+
+    static checkBonusDuplicate(numbers, bonusNumber) {
+        const numbersArray = numbers.split(",");
+        if (numbersArray.includes(bonusNumber.toString())) {
+            throw new Error("[ERROR] 보너스 번호는 로또 번호와 중복된 숫자가 포함되어 있으면 안됩니다.");
         }
     }
 }

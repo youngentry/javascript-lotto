@@ -2,10 +2,6 @@ const { Console, Random } = require("@woowacourse/mission-utils");
 const Printer = require("./Printer");
 
 class Generator {
-    constructor() {
-        // 랜덤한 로또를 담은 배열
-    }
-
     getLottos(amount) {
         return this.makeRandomLotto(amount);
     }
@@ -18,7 +14,5 @@ class Generator {
         return sixNumber;
     }
 }
-
-const gene = new Generator();
 
 module.exports = Generator;

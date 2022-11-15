@@ -9,8 +9,6 @@ class Printer {
     }
 
     static lottos(lottos) {
-        Console.print();
-
         lottos.forEach((lotto) => {
             Console.print("[" + lotto.toString().replaceAll(",", ", ") + "]");
         });
