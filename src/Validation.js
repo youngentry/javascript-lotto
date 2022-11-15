@@ -1,3 +1,5 @@
+const { OPTION } = require("./constant/message");
+
 class Validation {
     static validateExpectNumbers(numbers) {
         this.checkNumbersLength(numbers);
@@ -8,8 +10,8 @@ class Validation {
 
     static checkNumbersLength(numbers) {
         if (Array.isArray(numbers)) numbers = numbers.join();
-        if (numbers.split(",").length !== 6) {
-            throw new Error("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.split(",").length !== OPTION.LENGTH) {
+            throw new Error(`[ERROR] 로또 번호는 6개여야 합니다.`);
         }
     }
 
@@ -17,8 +19,8 @@ class Validation {
         if (Array.isArray(numbers)) numbers = numbers.join();
         const numberArray = numbers.split(",");
         numberArray.forEach((number) => {
-            if (parseInt(number) < 1 || parseInt(number) > 45) {
-                throw new Error("[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다.");
+            if (parseInt(number) < OPTION.LOW_NUMBER || parseInt(number) > OPTION.HIGH_NUMBER) {
+                throw new Error(`[ERROR] 로또 번호는 1에서 45사이의 숫자여야 합니다.`);
             }
         });
     }

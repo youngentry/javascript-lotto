@@ -1,21 +1,12 @@
-const Printer = require("./Printer");
-const Generator = require("./Generator");
-const Customer = require("./Customer");
-const LottoBonus = require("./LottoBonus");
 const Validation = require("./Validation");
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, UNIT } = require("./constant/message");
+const { MESSAGE, UNIT, OPTION, BONUS_OPTION } = require("./constant/message");
 
 class Lotto {
     #numbers;
 
     constructor(numbers) {
-        this.printer = new Printer();
-        this.amount = new Customer();
-        this.lottos = new Generator();
-        this.bonus;
         this.resultArray = [];
-        this.revenue;
         this.validate(numbers);
         this.#numbers = numbers;
     }
@@ -27,26 +18,8 @@ class Lotto {
         Validation.checkBonusDuplicate(this.#numbers, bonus);
     }
 
-    setAmount() {
-        Console.readLine(MESSAGE.PURCHASE, (money) => {
-            this.amount = this.amount.getPurchaseAmount(money);
-            this.setLottos();
-        });
-    }
-
-    setLottos() {
-        Console.readLine(this.amount + MESSAGE.PURCHASE_RESULT, (money) => {
-            this.lottos = this.lottos.getLottos(this.amount);
-            this.lottos.forEach((lotto) => {
-                Console.print(lotto);
-            });
-            this.getWinningCount();
-        });
-    }
-
     getWinningCount(bonus, lottos) {
         const winningCount = [];
-        let BONUS_CHANCE = 10;
         const numbersArray = this.#numbers.split(",");
         numbersArray.push(bonus);
 
@@ -57,7 +30,7 @@ class Lotto {
                     count++;
                 }
                 if (count == 5 && j == numbersArray.length - 1) {
-                    count += BONUS_CHANCE;
+                    count += BONUS_OPTION.CHANCE;
                 }
             }
             winningCount.push(count);
@@ -69,16 +42,11 @@ class Lotto {
         for (let i = 0; i < 5; i++) {
             this.resultArray.push(winningCount.filter((el) => el == i + 3).length);
         }
-        this.resultArray[4] += winningCount.filter((el) => el > 10).length;
+        // 5, 4, 3, 1, 2 순서로 담긴 등수를 5, 4, 3, 2, 1 순서로 바꿔주기
+        this.resultArray[4] += winningCount.filter((el) => el > BONUS_OPTION.CHANCE).length;
         [this.resultArray[3], this.resultArray[4]] = [this.resultArray[4], this.resultArray[3]];
 
-        Printer.lottoResult(this.resultArray);
-
         return this.resultArray;
-    }
-
-    showRevenue(resultArray, amount) {
-        Console.print(MESSAGE.YIELD + " " + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
     }
 
     getRevenue(resultArray, amount) {
@@ -86,7 +54,11 @@ class Lotto {
         for (let i = 0; i < 5; i++) {
             sum += UNIT[i] * resultArray[i];
         }
-        return ((sum / amount / UNIT.PRICE) * 100).toFixed(1);
+        return ((sum / amount / OPTION.PRICE) * 100).toFixed(1);
+    }
+
+    showRevenue(resultArray, amount) {
+        Console.print(MESSAGE.YIELD + " " + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
     }
 }
 

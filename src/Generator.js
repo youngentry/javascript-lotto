@@ -1,5 +1,5 @@
-const { Console, Random } = require("@woowacourse/mission-utils");
-const Printer = require("./Printer");
+const { Random } = require("@woowacourse/mission-utils");
+const { OPTION } = require("./constant/message");
 
 class Generator {
     getLottos(amount) {
@@ -7,11 +7,11 @@ class Generator {
     }
 
     makeRandomLotto(amount) {
-        const sixNumber = [];
+        const randomLottos = [];
         for (let i = 0; i < amount; i++) {
-            sixNumber.push(Random.pickUniqueNumbersInRange(1, 45, 6).sort((a, b) => a - b));
+            randomLottos.push(Random.pickUniqueNumbersInRange(OPTION.LOW_NUMBER, OPTION.HIGH_NUMBER, OPTION.LENGTH).sort((a, b) => a - b));
         }
-        return sixNumber;
+        return randomLottos;
     }
 }
 

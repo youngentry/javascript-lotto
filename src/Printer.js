@@ -1,14 +1,12 @@
 const { Console } = require("@woowacourse/mission-utils");
-const { MESSAGE, UNIT } = require("./constant/message");
+const { MESSAGE } = require("./constant/message");
 
 class Printer {
-    constructor() {}
-
     static amountResult(amount, amountResult) {
         Console.print(amount + amountResult);
     }
 
-    static lottos(lottos) {
+    static lottoList(lottos) {
         lottos.forEach((lotto) => {
             Console.print("[" + lotto.toString().replaceAll(",", ", ") + "]");
         });

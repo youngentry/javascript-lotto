@@ -22,7 +22,17 @@ const UNIT = {
     2: 1500000,
     3: 30000000,
     4: 2000000000,
-    PRICE: 1000,
 };
 
-module.exports = { MESSAGE, UNIT };
+const OPTION = {
+    PRICE: 1000,
+    LENGTH: 6,
+    LOW_NUMBER: 1,
+    HIGH_NUMBER: 45,
+};
+
+const BONUS_OPTION = {
+    CHANCE: 10,
+};
+
+module.exports = { MESSAGE, UNIT, OPTION, BONUS_OPTION };
