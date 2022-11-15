@@ -21,6 +21,7 @@ class Lotto {
 
     getWinningCount(bonus, lottoList) {
         this.bonus = new LottoBonus(bonus).number;
+        this.validateDuplication(this.bonus);
         const winningCountList = [];
         const winningNumbers = this.#numbers.split(",");
 
