@@ -30,7 +30,7 @@ class Validation {
         const numberArray = numbers.split(",");
         numberArray.forEach((number) => {
             if (!/^\d+$/g.test(number)) {
-                throw new Error("[ERROR] 숫자를 입력해야 합니다.");
+                throw new Error("[ERROR] 올바른 숫자를 입력해야 합니다.");
             }
         });
     }

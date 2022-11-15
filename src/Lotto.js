@@ -49,7 +49,6 @@ class Lotto {
             this.resultArray.push(winningCount.filter((el) => el == i + 3).length);
         }
         this.sortBonusPlace(this.resultArray, winningCount);
-
         return this.resultArray;
     }
     sortBonusPlace(resultArray, winningCount) {

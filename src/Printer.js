@@ -2,6 +2,10 @@ const { Console } = require("@woowacourse/mission-utils");
 const { MESSAGE } = require("./constant/message");
 
 class Printer {
+    static spaceLine() {
+        Console.print("");
+    }
+
     static amountResult(amount, amountResult) {
         Console.print(amount + amountResult);
     }
@@ -10,10 +14,6 @@ class Printer {
         lottos.forEach((lotto) => {
             Console.print("[" + lotto.toString().replaceAll(",", ", ") + "]");
         });
-    }
-
-    static spaceLine() {
-        Console.print("");
     }
 
     static lottoResult(winnings) {
