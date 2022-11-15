@@ -15,13 +15,10 @@ class Lotto {
     validate(numbers) {
         Validation.validateExpectNumbers(numbers);
     }
-    validateDuplication(bonus) {
-        Validation.checkBonusDuplicate(this.#numbers, bonus);
-    }
 
     getWinningCount(bonus, lottoList) {
         this.bonus = new LottoBonus(bonus).number;
-        this.validateDuplication(this.bonus);
+        Validation.checkBonusDuplicate(this.#numbers, bonus);
         const winningCountList = [];
         const winningNumbers = this.#numbers.split(",");
 

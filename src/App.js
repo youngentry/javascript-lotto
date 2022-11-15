@@ -8,7 +8,7 @@ const LottoBonus = require("./module/LottoBonus");
 
 class App {
     amount;
-    lottoList;
+    purchaseList;
     winningCount;
     lottoResult;
     revenue;
