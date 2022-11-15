@@ -21,6 +21,10 @@ class Printer {
             Console.print(MESSAGE.WINNING[`${i}`] + winnings[i] + MESSAGE.KOREAN_AMOUNT_WORD);
         }
     }
+
+    static revenue(revenue) {
+        Console.print(MESSAGE.YIELD + " " + revenue + "%" + MESSAGE.KOREAN_ENDING_WORD);
+    }
 }
 
 module.exports = Printer;

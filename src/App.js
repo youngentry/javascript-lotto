@@ -22,10 +22,10 @@ class App {
 
     inputMoney = (money) => {
         Printer.spaceLine();
-        this.amount = new Customer().getPurchaseAmount(money);
-        this.lottoList = new Generator().getLottos(this.amount);
+        this.#amount = new Customer().getPurchaseAmount(money);
+        this.lottoList = new Generator().getLottos(this.#amount);
 
-        Printer.amountResult(this.amount, MESSAGE.PURCHASE_RESULT);
+        Printer.amountResult(this.#amount, MESSAGE.PURCHASE_RESULT);
         Printer.lottoList(this.lottoList);
         Printer.spaceLine();
 
@@ -44,9 +44,10 @@ class App {
         this.lotto.validateDuplication(this.bonus.number);
         const winningCount = this.lotto.getWinningCount(this.bonus.number, this.lottoList);
         const lottoResultArray = this.lotto.getLottoResult(winningCount);
+        const revenue = this.lotto.getRevenue(lottoResultArray, this.#amount);
 
         Printer.lottoResult(lottoResultArray);
-        this.lotto.showRevenue(lottoResultArray, this.amount);
+        Printer.revenue(revenue);
         Console.close();
     };
 

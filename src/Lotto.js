@@ -64,10 +64,6 @@ class Lotto {
         }
         return ((sum / amount / OPTION.PRICE) * 100).toFixed(1);
     }
-
-    showRevenue(resultArray, amount) {
-        Console.print(MESSAGE.YIELD + " " + this.getRevenue(resultArray, amount) + "%" + MESSAGE.KOREAN_ENDING_WORD);
-    }
 }
 
 module.exports = Lotto;
